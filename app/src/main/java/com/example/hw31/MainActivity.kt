@@ -25,18 +25,14 @@ class MainActivity : AppCompatActivity() {
             val text = allText.text.toString().trim()
 
 
-
-            val mIntent = Intent(Intent.ACTION_SENDTO)
-            mIntent.data = Uri.parse("mailto:" + email)
-            mIntent.putExtra(Intent.EXTRA_SUBJECT, theme)
-            mIntent.putExtra(Intent.EXTRA_TEXT, text)
-
-
+            val uriString = "mailto:$email?subject=${Uri.encode(theme)}&body=${Uri.encode(text)}"
+            val mIntent = Intent(Intent.ACTION_SENDTO, Uri.parse(uriString))
 
             try {
                 startActivity(mIntent)
             } catch (e: Exception) {
                 Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
-            }}
+            }
+        }
     }
 }
