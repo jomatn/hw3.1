@@ -14,19 +14,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val anEmail = findViewById<EditText>(R.id.email)
-        val theTheme = findViewById<EditText>(R.id.theme)
-        val allText = findViewById<EditText>(R.id.text)
+        val etEmail = findViewById<EditText>(R.id.email)
+        val etTheme = findViewById<EditText>(R.id.theme)
+        val etText = findViewById<EditText>(R.id.text)
         val sendButton = findViewById<Button>(R.id.button)
 
         sendButton.setOnClickListener {
-            val email = anEmail.text.toString().trim()
-            val theme = theTheme.text.toString().trim()
-            val text = allText.text.toString().trim()
+            val email = etEmail.text.toString().trim()
+            val theme = etTheme.text.toString().trim()
+            val text = etText.text.toString().trim()
 
 
             val uriString = "mailto:$email?subject=${Uri.encode(theme)}&body=${Uri.encode(text)}"
             val mIntent = Intent(Intent.ACTION_SENDTO, Uri.parse(uriString))
+
+
 
             try {
                 startActivity(mIntent)
